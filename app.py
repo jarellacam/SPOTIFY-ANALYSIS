@@ -1,40 +1,53 @@
-import altair as alt
-import numpy as np
-import pandas as pd
 import streamlit as st
+import pandas as pd
 
-"""
-# Welcome to Streamlit!
+# Configuración de la página
+st.set_page_config(
+    page_title="Spotify Genre Analysis",
+    page_icon="🎵",
+    layout="wide"
+)
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+# Estilo CSS para mejorar la apariencia
+st.markdown("""
+    <style>
+    .main {
+        background-color: #121212;
+        color: white;
+    }
+    .stMarkdown h1, h2, h3 {
+        color: #1DB954 !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+# Título e Introducción
+st.title("Spotify Genre Analysis")
+st.subheader("Descubriendo el ADN sonoro de la música")
 
-num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
-num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
+st.markdown("""
+Bienvenido a este análisis exploratorio y de clustering sobre más de **100.000 canciones** de Spotify. 
+Este proyecto nace de la curiosidad por entender si los géneros musicales tienen fronteras sonoras reales 
+o si son simples etiquetas culturales.
 
-indices = np.linspace(0, 1, num_points)
-theta = 2 * np.pi * num_turns * indices
-radius = indices
+### ¿Cómo navegar por esta App?
+En la **barra lateral de la izquierda** encontrarás diferentes secciones para explorar los datos:
 
-x = radius * np.cos(theta)
-y = radius * np.sin(theta)
+* **Radar Chart**: Compara las características de audio (bailabilidad, energía, acústica) entre diferentes géneros.
+* **Heatmap**: Visualiza la correlación entre las variables que definen el éxito de una canción.
+* **Clustering**: Descubre cómo el aprendizaje no supervisado agrupa los géneros por sus similitudes acústicas reales.
 
-df = pd.DataFrame({
-    "x": x,
-    "y": y,
-    "idx": indices,
-    "rand": np.random.randn(num_points),
-})
+---
+""")
 
-st.altair_chart(alt.Chart(df, height=700, width=700)
-    .mark_point(filled=True)
-    .encode(
-        x=alt.X("x", axis=None),
-        y=alt.Y("y", axis=None),
-        color=alt.Color("idx", legend=None, scale=alt.Scale()),
-        size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
-    ))
+# Mostrar una pequeña muestra de los datos para dar contexto
+st.info(" Estamos utilizando un dataset de Kaggle con 114,000 canciones procesadas mediante PCA y K-Means.")
+
+try:
+    df_sample = pd.read_csv('data/datos_con_clusters.csv').head(10)
+    st.write("### Vista previa de los datos analizados:")
+    st.dataframe(df_sample)
+except Exception as e:
+    st.warning("El dataset se está cargando o no está disponible en la raíz.")
+
+st.sidebar.success("Selecciona una sección arriba para comenzar.")
