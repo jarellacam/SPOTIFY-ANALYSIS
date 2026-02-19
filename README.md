@@ -7,7 +7,6 @@ comparten un ADN sonoro similar pese a ser culturalmente distintos.
 
 ## Visualizaciones destacadas
 
-![Heatmap ADN Sonoro](notebooks/img/01_heatmap_generos.png)
 ![Radar Comparativa](notebooks/img/05_radares_comparativas.png)
 ![Clusters PCA](notebooks/img/07_clusters_pca.png)
 
@@ -113,3 +112,6 @@ que más variaron entre géneros, sino el tempo y el loudness.
 | Géneros modernos más similares entre sí | Confirmada parcialmente |
 | Clustering por familias de géneros | Confirmada parcialmente |
 | Energy y danceability como principales diferenciadores | Sorpresa: fueron tempo y loudness |
+
+
+> ** Nota:** Puedes interactuar con la aplicación en vivo aquí: [Spotify Genre Analysis App](https://huggingface.co/spaces/jarellacam/spotify-genre-analysis)
