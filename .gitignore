@@ -1,0 +1,16 @@
+# Credenciales
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Data (opcional, si los CSVs son grandes)
+#data/
+
+# Entornos virtuales
+venv/
+env/"data/dataset.csv" 
+"data/dataset_limpio.csv" 
